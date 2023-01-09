@@ -40,8 +40,6 @@ def Long() :
            send_text("Long du " + TableauActions[i] + " au prix de " +  str(data[i].Close[-1]).replace('.',','))   
         if data[i].achat[-1] != 'ACHAT' and data[i].achat[-2] == 'ACHAT' :
             send_text("Coupe ton LONG " + TableauActions[i] + " au prix de " + str(data[i].Close[-1]).replace('.',','))
-        print (data[i])
-        print(data[i].tenkan_sen)
 def Short() :
     for i in range(len(asset))   :    
         if data[i].Close[-1] < data[i].tenkan_sen[-1] and data[i].tenkan_sen[-1] <= data[i].kijun_sen[-1] and data[i].Close[-1] < data[i].SSA[-1] and data[i].Close[-1] < data[i].SSB[-1] and (data[i].chikou[-27] < data[i].SSB[-27] or data[i].chikou[-27] < data[i].SSA[-27]):
