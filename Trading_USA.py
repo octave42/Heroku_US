@@ -32,23 +32,23 @@ for i in range(len(asset)) :
 def Long() :
     for i in range(len(asset)):
         
-        if data[i].Close[-1] > data[i].tenkan_sen[-1] and data[i].tenkan_sen[-1] >= data[i].kijun_sen[-1] and data[i].Close[-1] > data[i].SSA[-1] and data[i].Close[-1] > data[i].SSB[-1] and (data[i].chikou[-27] > data[i].SSB[-27] or data[i].chikou[-27] > data[i].SSA[-27]):
-            data[i].achat[-1] = 'ACHAT'
         if data[i].Close[-2] > data[i].tenkan_sen[-2] and data[i].tenkan_sen[-2] >= data[i].kijun_sen[-2] and data[i].Close[-2] > data[i].SSA[-2] and data[i].Close[-2] > data[i].SSB[-2] and (data[i].chikou[-28] > data[i].SSB[-28] or data[i].chikou[-28] > data[i].SSA[-28]):
-            data[i].achat[-2] = 'ACHAT'   
-        if data[i].achat[-1] == 'ACHAT' and data[i].achat[-2] != 'ACHAT' :  
+            data[i].achat[-2] = 'ACHAT'
+        if data[i].Close[-3] > data[i].tenkan_sen[-3] and data[i].tenkan_sen[-3] >= data[i].kijun_sen[-3] and data[i].Close[-3] > data[i].SSA[-3] and data[i].Close[-3] > data[i].SSB[-3] and (data[i].chikou[-29] > data[i].SSB[-29] or data[i].chikou[-29] > data[i].SSA[-29]):
+            data[i].achat[-3] = 'ACHAT'   
+        if data[i].achat[-2] == 'ACHAT' and data[i].achat[-3] != 'ACHAT' :  
            send_text("Long du " + TableauActions[i] + " au prix de " +  str(data[i].Close[-1]).replace('.',','))   
-        if data[i].achat[-1] != 'ACHAT' and data[i].achat[-2] == 'ACHAT' :
+        if data[i].achat[-2] != 'ACHAT' and data[i].achat[-3] == 'ACHAT' :
             send_text("Coupe ton LONG " + TableauActions[i] + " au prix de " + str(data[i].Close[-1]).replace('.',','))
 def Short() :
     for i in range(len(asset))   :    
-        if data[i].Close[-1] < data[i].tenkan_sen[-1] and data[i].tenkan_sen[-1] <= data[i].kijun_sen[-1] and data[i].Close[-1] < data[i].SSA[-1] and data[i].Close[-1] < data[i].SSB[-1] and (data[i].chikou[-27] < data[i].SSB[-27] or data[i].chikou[-27] < data[i].SSA[-27]):
-            data[i].achat[-1] = 'SHORT'
         if data[i].Close[-2] < data[i].tenkan_sen[-2] and data[i].tenkan_sen[-2] <= data[i].kijun_sen[-2] and data[i].Close[-2] < data[i].SSA[-2] and data[i].Close[-2] < data[i].SSB[-2] and (data[i].chikou[-28] < data[i].SSB[-28] or data[i].chikou[-28] < data[i].SSA[-28]):
-            data[i].achat[-2] = 'SHORT'      
-        if data[i].achat[-1] == 'SHORT' and data[i].achat[-2] != 'SHORT' :    
+            data[i].achat[-2] = 'SHORT'
+        if data[i].Close[-3] < data[i].tenkan_sen[-3] and data[i].tenkan_sen[-3] <= data[i].kijun_sen[-3] and data[i].Close[-3] < data[i].SSA[-3] and data[i].Close[-3] < data[i].SSB[-3] and (data[i].chikou[-29] < data[i].SSB[-29] or data[i].chikou[-29] < data[i].SSA[-29]):
+            data[i].achat[-3] = 'SHORT'      
+        if data[i].achat[-2] == 'SHORT' and data[i].achat[-3] != 'SHORT' :    
             send_text("SHORT du " + TableauActions[i] + " au prix de " +  str(data[i].Close[-1]).replace('.',',')) 
-        if data[i].achat[-1] != 'SHORT' and data[i].achat[-2] == 'SHORT' :
+        if data[i].achat[-2] != 'SHORT' and data[i].achat[-3] == 'SHORT' :
             send_text("Coupe ton SHORT " + TableauActions[i] + " au prix de " + str(data[i].Close[-1]).replace('.',','))
             # correspond à une notification de stopper le short 
 
